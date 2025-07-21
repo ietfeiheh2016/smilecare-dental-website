@@ -1,0 +1,51 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": {
+    "GEMINI_API_KEY": "@gemini_api_key",
+    "GOOGLE_CALENDAR_ID": "@google_calendar_id",
+    "GOOGLE_SERVICE_ACCOUNT_KEY": "@google_service_account_key",
+    "NEXT_PUBLIC_SITE_URL": "@next_public_site_url",
+    "DENTAL_PRACTICE_NAME": "SmileCare Dental Clinic",
+    "DENTAL_DOCTOR_NAME": "Dr. Sarah Johnson, DDS",
+    "DENTAL_PRACTICE_ADDRESS": "123 Dental Street, SmileCity, SC 12345",
+    "DENTAL_PRACTICE_PHONE": "(555) 123-4567",
+    "DENTAL_PRACTICE_EMAIL": "contact@smilecare.com",
+    "DENTAL_EMERGENCY_PHONE": "(555) 123-4567"
+  },
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ]
+}
